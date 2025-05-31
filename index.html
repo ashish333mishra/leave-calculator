@@ -1,123 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Leave Calculator</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background: linear-gradient(to right, #e0e7ff, #ffffff);
-            font-family: 'Inter', sans-serif;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-        .card {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-        }
-        .input-field {
-            transition: all 0.3s ease;
-        }
-        .input-field:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-        }
-        .btn-calculate {
-            background: #4f46e5;
-            transition: all 0.3s ease;
-        }
-        .btn-calculate:hover {
-            background: #4338ca;
-            transform: translateY(-2px);
-        }
-        .result-box {
-            background: #f8fafc;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-top: 1.5rem;
-            display: none;
-        }
-        @media (max-width: 640px) {
-            .container {
-                padding: 0.5rem;
-            }
-            .card {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Leave Calculator</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body {
+background: linear-gradient(to right, #e0e7ff, #ffffff);
+font-family: 'Inter', sans-serif;
+}
+.container {
+max-width: 500px; /* Reduced width */
+margin: 0 auto;
+padding: 1rem;
+}
+.card {
+background: white;
+border-radius: 1rem;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+padding: 2rem;
+}
+.input-field {
+transition: all 0.3s ease;
+}
+.input-field:focus {
+border-color: #4f46e5;
+box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+.btn-calculate {
+background: #4f46e5;
+transition: all 0.3s ease;
+}
+.btn-calculate:hover {
+background: #4338ca;
+transform: translateY(-2px);
+}
+.result-box {
+background: #f8fafc;
+border-radius: 0.5rem;
+padding: 1rem;
+margin-top: 1.5rem;
+display: none;
+}
+@media (max-width: 640px) {
+.container {
+padding: 0.5rem;
+}
+.card {
+padding: 1.5rem;
+}
+}
+</style>
 </head>
 <body class="min-h-screen flex items-center justify-center">
-    <div class="container">
-        <div class="card">
-            <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Employee Leave Calculator</h1>
-            <form id="leaveForm" class="space-y-4">
-                <div>
-                    <label for="joiningDate" class="block text-sm font-medium text-gray-700">Joining Date</label>
-                    <input type="date" id="joiningDate" name="joiningDate" required
-                           class="input-field mt-1 block w-full rounded-md border-gray-300 border p-2 focus:outline-none">
-                </div>
-                <div>
-                    <label for="currentDate" class="block text-sm font-medium text-gray-700">Current Date</label>
-                    <input type="date" id="currentDate" name="currentDate" required
-                           class="input-field mt-1 block w-full rounded-md border-gray-300 border p-2 focus:outline-none">
-                </div>
-                <div>
-                    <label for="sickLeave" class="block text-sm font-medium text-gray-700">Number of Sick Leave Days</label>
-                    <input type="number" id="sickLeave" name="sickLeave" min="0" required
-                           class="input-field mt-1 block w-full rounded-md border-gray-300 border p-2 focus:outline-none">
-                </div>
-                <div>
-                    <label for="extraordinaryLeave" class="block text-sm font-medium text-gray-700">Number of Extraordinary Leave Days</label>
-                    <input type="number" id="extraordinaryLeave" name="extraordinaryLeave" min="0" required
-                           class="input-field mt-1 block w-full rounded-md border-gray-300 border p-2 focus:outline-none">
-                </div>
-                <button type="submit" class="btn-calculate w-full text-white font-semibold py-2 rounded-md">Calculate</button>
-            </form>
-            <div id="result" class="result-box">
-                <h2 class="text-lg font-semibold text-gray-800">Results</h2>
-                <p id="totalDays" class="text-gray-600"></p>
-                <p id="privilegeLeave" class="text-gray-600"></p>
-            </div>
-        </div>
-    </div>
+<div class="container">
+<div class="card">
+<h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Employee Leave Calculator</h1>
+<form id="leaveForm" class="space-y-4">
+<div>
+<label for="joiningDate" class="block text-sm font-medium text-gray-700">Joining Date</label>
+<input type="date" id="joiningDate" name="joiningDate" required
+class="input-field mt-1 block w-full rounded-md border-gray-300 border p-2 focus:outline-none">
+</div>
+<div>
+<label for="currentDate" class="block text-sm font-medium text-gray-700">Current Date</label>
+<input type="date" id="currentDate" name="currentDate" required
+class="input-field mt-1 block w-full rounded-md border-gray-300 border p-2 focus:outline-none">
+</div>
+<div>
+<label for="sickLeave" class="block text-sm font-medium text-gray-700">Number of Sick Leave Days Taken</label>
+<input type="number" id="sickLeave" name="sickLeave" min="0" required
+class="input-field mt-1 block w-full rounded-md border-gray-300 border p-2 focus:outline-none">
+</div>
+<div>
+<label for="extraordinaryLeave" class="block text-sm font-medium text-gray-700">Number of Extraordinary Leave Days Taken</label>
+<input type="number" id="extraordinaryLeave" name="extraordinaryLeave" min="0" required
+class="input-field mt-1 block w-full rounded-md border-gray-300 border p-2 focus:outline-none">
+</div>
+<div>
+<label for="privilegeLeaveTaken" class="block text-sm font-medium text-gray-700">Number of Privilege Leave Days Taken</label>
+<input type="number" id="privilegeLeaveTaken" name="privilegeLeaveTaken" min="0" required
+class="input-field mt-1 block w-full rounded-md border-gray-300 border p-2 focus:outline-none">
+</div>
+<button type="submit" class="btn-calculate w-full text-white font-semibold py-2 rounded-md">Calculate</button>
+</form>
+<div id="result" class="result-box">
+<h2 class="text-lg font-semibold text-gray-800">Results</h2>
+<p id="totalDays" class="text-gray-600"></p>
+<p id="privilegeYears" class="text-gray-600"></p>
+<p id="sickLeaveEntitled" class="text-gray-600"></p>
+<p id="privilegeLeave" class="text-gray-600"></p>
+<p id="remainderDays" class="text-gray-600"></p>
+<p id="carryForwardDays" class="text-gray-600"></p>
+</div>
+</div>
+</div>
 
-    <script>
-        document.getElementById('leaveForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+<script>
+document.getElementById('leaveForm').addEventListener('submit', function(e) {
+e.preventDefault();
 
-            // Get input values
-            const joiningDate = new Date(document.getElementById('joiningDate').value);
-            const currentDate = new Date(document.getElementById('currentDate').value);
-            const sickLeave = parseInt(document.getElementById('sickLeave').value) || 0;
-            const extraordinaryLeave = parseInt(document.getElementById('extraordinaryLeave').value) || 0;
+// Get input values
+const joiningDate = new Date(document.getElementById('joiningDate').value);
+const currentDate = new Date(document.getElementById('currentDate').value);
+const sickLeave = parseInt(document.getElementById('sickLeave').value) || 0;
+const extraordinaryLeave = parseInt(document.getElementById('extraordinaryLeave').value) || 0;
+const privilegeLeaveTaken = parseInt(document.getElementById('privilegeLeaveTaken').value) || 0;
 
-            // Validate dates
-            if (joiningDate > currentDate) {
-                alert('Joining date cannot be later than current date.');
-                return;
-            }
+// Validate dates
+if (joiningDate > currentDate) {
+alert('Joining date cannot be later than current date.');
+return;
+}
 
-            // Calculate total days between joining and current date
-            const timeDiff = currentDate - joiningDate;
-            const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+// Calculate privilege leave years based on March 31st cutoff
+let privilegeYears = 0;
+let totalDays = 0;
+let startYear = joiningDate.getFullYear();
+let endYear = currentDate.getFullYear();
 
-            // Calculate privilege leave
-            const remainingDays = totalDays - sickLeave - extraordinaryLeave;
-            const privilegeLeave = Math.floor(remainingDays / 11);
+for (let year = startYear; year <= endYear; year++) {
+let start = new Date(year, 2, 31); // March 31st of the year
+let end = new Date(year + 1, 2, 31); // March 31st of next year
 
-            // Display results
-            const resultBox = document.getElementById('result');
-            document.getElementById('totalDays').textContent = `Total Days of Service: ${totalDays}`;
-            document.getElementById('privilegeLeave').textContent = `Privilege Leave Days: ${privilegeLeave}`;
-            resultBox.style.display = 'block';
-        });
-    </script>
+// Adjust start and end dates for partial years
+if (year === startYear && joiningDate > start) {
+start = joiningDate;
+}
+if (year === endYear && currentDate < end) {
+end = currentDate;
+}
+
+// Calculate days in the privilege year
+if (start <= end) {
+const timeDiff = end - start;
+const daysInPeriod = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
+totalDays += daysInPeriod;
+if (daysInPeriod >= 365) { // Count as a full privilege year
+privilegeYears++;
+} else if (year === endYear && currentDate >= start) {
+// Partial year calculation
+privilegeYears += daysInPeriod / 365;
+}
+}
+}
+
+// Calculate remaining days after subtracting leaves
+const remainingDays = totalDays - sickLeave - extraordinaryLeave - privilegeLeaveTaken;
+
+// Calculate privilege leave: divide remaining days by 11
+const privilegeLeave = Math.floor(remainingDays / 11);
+const remainderDays = remainingDays % 11;
+const carryForwardDays = remainderDays * 11;
+
+// Sick leave entitlement equals privilege years (rounded down for simplicity)
+const sickLeaveEntitled = Math.floor(privilegeYears);
+
+// Display results
+const resultBox = document.getElementById('result');
+document.getElementById('totalDays').textContent = `Total Days of Service: ${totalDays}`;
+document.getElementById('privilegeYears').textContent = `Privilege Leave Years: ${privilegeYears.toFixed(2)}`;
+document.getElementById('sickLeaveEntitled').textContent = `Sick Leave Entitled: ${sickLeaveEntitled} days`;
+document.getElementById('privilegeLeave').textContent = `Privilege Leave Days: ${privilegeLeave}`;
+document.getElementById('remainderDays').textContent = `Remainder Days: ${remainderDays}`;
+document.getElementById('carryForwardDays').textContent = `Carry Forward Days: ${carryForwardDays}`;
+resultBox.style.display = 'block';
+});
+</script>
 </body>
 </html>
