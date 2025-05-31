@@ -151,8 +151,7 @@ const remainingDays = totalDays - sickLeave - extraordinaryLeave - privilegeLeav
 
 // Calculate privilege leave: divide remaining days by 11
 const privilegeLeave = Math.floor(remainingDays / 11);
-const remainderDays = remainingDays % 11;
-const carryForwardDays = remainderDays * 11;
+const carryForwardDays = remainingDays % 11;
 
 // Sick leave entitlement equals privilege years (rounded down for simplicity)
 const sickLeaveEntitled = Math.floor(privilegeYears);
@@ -160,10 +159,9 @@ const sickLeaveEntitled = Math.floor(privilegeYears);
 // Display results
 const resultBox = document.getElementById('result');
 document.getElementById('totalDays').textContent = `Total Days of Service: ${totalDays}`;
-document.getElementById('privilegeYears').textContent = `Privilege Leave Years: ${privilegeYears.toFixed(2)}`;
+//document.getElementById('privilegeYears').textContent = `Privilege Leave Years: ${privilegeYears.toFixed(2)}`;
 document.getElementById('sickLeaveEntitled').textContent = `Sick Leave Entitled: ${sickLeaveEntitled} days`;
 document.getElementById('privilegeLeave').textContent = `Privilege Leave Days: ${privilegeLeave}`;
-document.getElementById('remainderDays').textContent = `Remainder Days: ${remainderDays}`;
 document.getElementById('carryForwardDays').textContent = `Carry Forward Days: ${carryForwardDays}`;
 resultBox.style.display = 'block';
 });
